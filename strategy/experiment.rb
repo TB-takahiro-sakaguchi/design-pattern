@@ -2,8 +2,13 @@ require './report'
 require './html_formatter'
 require './plain_text_formatter'
 
-report = Report.new(HtmlFormatter.new)
+html_formatter = HtmlFormatter.new
+report = Report.new(html_formatter)
 report.output_report
 
-report = Report.new(PlainTextFormatter.new)
+plain_text_formatter = PlainTextFormatter.new
+report = Report.new(plain_text_formatter)
+report.output_report
+
+report.formatter = html_formatter
 report.output_report
