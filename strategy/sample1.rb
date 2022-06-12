@@ -43,18 +43,34 @@ end
 html_formatter = HtmlFormatter.new
 report = Report.new(html_formatter)
 report.output_report
-
-puts
-puts('==========')
-puts
+# <html>
+#  <head>
+#   <title>report title</title>
+#  </head>
+#  <body>
+#   <p>text1</p>
+#   <p>text2</p>
+#   <p>text3</p>
+#  </body>
+# </html>
 
 plain_text_formatter = PlainTextFormatter.new
 report = Report.new(plain_text_formatter)
 report.output_report
-
-puts
-puts('==========')
-puts
+# ***** report title *****
+# text1
+# text2
+# text3
 
 report.formatter = html_formatter
 report.output_report
+# <html>
+#  <head>
+#   <title>report title</title>
+#  </head>
+#  <body>
+#   <p>text1</p>
+#   <p>text2</p>
+#   <p>text3</p>
+#  </body>
+# </html>
