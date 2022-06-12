@@ -1,8 +1,8 @@
 # 基底抽象クラス
 class Report
   def initialize
-    @title = '月次報告'
-    @text = %w[順調 最高の調子]
+    @title = 'report title'
+    @text = %w[text1 text2 text3]
   end
 
   def output_report
@@ -85,6 +85,20 @@ end
 
 html_report = HtmlReport.new
 html_report.output_report
+# <html>
+#  <head>
+#  <title>report title</title>
+#  </head>
+#  <body>
+#   <p>text1</p>
+#   <p>text2</p>
+#   <p>text3</p>
+#  </body>
+# </html>
 
 plain_text_report = PlainTextReport.new
 plain_text_report.output_report
+# **** report title ****
+# text1
+# text2
+# text3
