@@ -14,21 +14,22 @@ end
 
 # Composite
 class CompositeTask < Task
-  attr_accessor :sub_tasks
-
   def initialize(name)
     super(name)
     @sub_tasks = []
   end
 
-  def add_sub_task(task)
+  def <<(task)
     @sub_tasks << task
     task.parent = self
   end
 
-  def remove_sub_task(task)
-    @sub_tasks.delete(task)
-    task.parent = nil
+  def [](index)
+    @sub_tasks[index]
+  end
+
+  def []=(index, new_value)
+    @sub_tasks[index] = new_value
   end
 
   def time_required
@@ -60,22 +61,21 @@ class SecondTask < Task
   end
 end
 
-# Composite Object
-class DailyTask < CompositeTask
-  def initialize
-    super('Daily task')
-    add_sub_task(FirstTask.new)
-    add_sub_task(SecondTask.new)
-  end
-end
+first_task = FirstTask.new
+second_task = SecondTask.new
+composite = CompositeTask.new('Composite task')
+composite << first_task
+composite << second_task
 
-daily_task = DailyTask.new
-puts daily_task.time_required
-puts daily_task.sub_tasks.size
-puts daily_task.sub_tasks[0].parent.name
-puts daily_task.sub_tasks[1].parent.name
+puts composite.time_required
 # 3.0
-# 2
-# Daily task
-# Daily task
-# takah@DESKT
+
+puts composite[0].time_required
+# 1.0
+
+puts composite[1].time_required
+# 2.0
+
+composite[0] = second_task
+puts composite.time_required
+# 4.0
